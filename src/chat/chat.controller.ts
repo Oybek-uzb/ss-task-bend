@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Controller, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {ChatService} from "./chat.service";
 import {FileInterceptor} from "@nestjs/platform-express";
 
@@ -9,9 +9,6 @@ export class ChatController {
     @Post()
     @UseInterceptors(FileInterceptor('file'))
     async receiveFile(@UploadedFile() file): Promise<string> {
-        console.log(file)
-        const mb = await this.chatService.receiveFile("let")
-        console.log(mb)
-        return "Hello";
+        return await this.chatService.receiveFile(file);
     }
 }
