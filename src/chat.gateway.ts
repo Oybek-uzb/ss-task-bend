@@ -6,7 +6,7 @@ export class ChatGateway {
     server;
 
     @SubscribeMessage('message')
-    handleMessage(@MessageBody() message: string) {
-        this.server.emit('message', message);
+    handleMessage(@MessageBody() data: { socketId: string, message: string }) {
+        this.server.emit('message', data);
     }
 }
