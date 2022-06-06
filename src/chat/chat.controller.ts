@@ -8,7 +8,7 @@ export class ChatController {
 
     @Post()
     @UseInterceptors(FileInterceptor('file'))
-    async receiveFile(@UploadedFile() file): Promise<string> {
+    async receiveFile(@UploadedFile() file): Promise<{ url: string, orgFileName: string }> {
         return await this.chatService.receiveFile(file);
     }
 }

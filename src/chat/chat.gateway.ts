@@ -1,5 +1,7 @@
 import {MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer} from "@nestjs/websockets";
+import {Injectable} from "@nestjs/common";
 
+@Injectable()
 @WebSocketGateway(80,{ cors: true })
 export class ChatGateway {
     @WebSocketServer()

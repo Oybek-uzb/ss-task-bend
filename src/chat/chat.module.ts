@@ -3,15 +3,21 @@ import {ChatController} from "./chat.controller";
 import {ChatService} from "./chat.service";
 import {ChatGateway} from "./chat.gateway";
 import {MinioModule} from "nestjs-minio-client";
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-    imports: [MinioModule.register({
-        endPoint: '127.0.0.1',
-        port: 9000,
-        useSSL: false,
-        accessKey: 'minioadmin',
-        secretKey: 'minioadmin',
-    }),],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: '.development.env'
+        }),
+        MinioModule.register({
+            endPoint: process.env.MINIO_ENDPOINT,
+            port: +process.env.MINIO_PORT,
+            useSSL: false,
+            accessKey: 'minioadmin',
+            secretKey: 'minioadmin',
+        })
+    ],
     controllers: [ChatController],
     providers: [ChatService, ChatGateway],
 })
