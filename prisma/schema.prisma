@@ -15,7 +15,6 @@ model User {
 
   userName String @unique
   hash String
-  hashedRt String?
 
   @@map("users")
 }
