@@ -14,8 +14,8 @@ import { ConfigModule } from '@nestjs/config';
             endPoint: process.env.MINIO_ENDPOINT,
             port: +process.env.MINIO_PORT,
             useSSL: false,
-            accessKey: 'minioadmin',
-            secretKey: 'minioadmin',
+            accessKey: 'admin',
+            secretKey: 'password',
         })
     ],
     controllers: [ChatController],

@@ -12,7 +12,8 @@ export class ChatService {
         const splitFileName = orgFileName.split('.');
         const fileExtension = '.' + splitFileName[splitFileName.length - 1];
 
-        const hashedFileName = await bcrypt.hash(orgFileName, 10) + fileExtension
+        let hashedFileName = await bcrypt.hash(orgFileName, 10)
+        hashedFileName = hashedFileName + fileExtension
 
         this.minioClient.client.putObject(
             "staff",

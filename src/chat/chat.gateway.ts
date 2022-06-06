@@ -13,7 +13,7 @@ export class ChatGateway {
     }
 
     @SubscribeMessage('file-message')
-    handleFileMessage(@MessageBody() data: any) {
-        console.log(data.formData);
+    handleFileMessage(@MessageBody() data: { socketId: string, orgFileName: string, url: string }) {
+        this.server.emit('file-message', data)
     }
 }
